@@ -79,5 +79,15 @@ echo '</form>';
 // Form to add new articles
 echo '<h2> Add new articles </h2>';
 // Upload field button
+echo '<html>';
+echo '<body>';
+echo '<form action="upload.php" method="post" enctype="multipart/form-data">';
+echo 'Select article to upload:';
+echo '<input type="file" name="fileToUpload" id="fileToUpload">';
+echo '<input type="submit" value="Upload File" name="submit">';
+echo '</form>';
+echo '</body>';
+echo '</html>';
+
 echo $_SESSION['username'];
 ?>
