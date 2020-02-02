@@ -29,7 +29,7 @@ while ($row = $results->fetch_assoc()) {
     echo '</tr>';
 }
 
-// TODO - Add a button that unpublishes articles
+// Add a button that unpublishes articles
 // Clicking it will launch a PHP script to insert it
 // When the button is clicked I need to get the ID for the entry it corresponds to into the $_SESSION? Or the $_POST? And then launch my delete.php script
 echo '</table>';
@@ -78,14 +78,23 @@ echo '</form>';
 
 // Form to add new articles
 echo '<h2> Add new articles </h2>';
+
+// TODO - Add form to add article meta data
+//  - Title
+//  - Summary
+
 // Upload field button
 echo '<html>';
 echo '<body>';
+
 echo '<form action="upload.php" method="post" enctype="multipart/form-data">';
+echo 'Title: <input type="text" name="title"><br>';
+echo 'Summary: <input type="text" name="summary"><br>';
 echo 'Select article to upload:';
 echo '<input type="file" name="fileToUpload" id="fileToUpload">';
 echo '<input type="submit" value="Upload File" name="submit">';
 echo '</form>';
+
 echo '</body>';
 echo '</html>';
 

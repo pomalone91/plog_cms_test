@@ -1,9 +1,17 @@
 <?php
-echo exec('whoami');
-echo "<br>";
+require_once '../DataBaseConnection.php';
 
 $target_dir = "/Library/WebServer/Documents/plog_cms_test/articles/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$filename = basename($_FILES["fileToUpload"]["name"]);
+$target_file = $target_dir . $filename;
+
+// Meta data
+$title = $_POST['title'];
+$summary = $_POST['summary'];
+
+echo "Title: " . $title . "<br>";
+echo "Summary: " . $summary . "<br>";
+
 $uploadOk = 1;
 
 // $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -45,5 +53,21 @@ if ($uploadOk == 0) {
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
+}
+
+// If the file was uploaded, add some records to the database.
+if ($uploadOk == 1) {
+    $statement = $con->prepare("INSERT INTO blog.articles (pubDate, title, summary, filename) VALUE (CURRENT_DATE(), ?, ?, ?)");
+    $statement->bind_param("sss", $title, $summary, $filename);
+    $result = $statement->execute();
+    
+//     Uncomment below to show error message in testing
+ 
+//     if (!$results) {
+//         $message = "Whole query " . $search;
+//         echo $message;
+//         die('Invalid query: ' . mysqli_error($con));
+//     }
+
 }
 ?>
