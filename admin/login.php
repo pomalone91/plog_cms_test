@@ -2,15 +2,15 @@
 session_start();
 unset($_SESSION['badPass']);
 
-$myusername = $_POST['myusername'];
-$mypassword = $_POST['mypassword'];
+$username = $_POST['username'];
+$password = trim($_POST['password']);
 
 require_once '../DataBaseConnection.php';
 
-$hashed = hash("ripemd128", $mypassword);
+$hashed = hash("ripemd128", $password);
 
-$sql = "SELECT * FROM blog.users where username='" . $myusername . "' and password='" . $hashed . "'";
-// echo $sql;
+$sql = "SELECT * FROM blog.users WHERE username='" . $username . "' AND password='" . $hashed . "' AND deletedAt IS NULL";
+// echo "<br>" . $sql;
 $result = $con->query($sql);
 
 
@@ -22,14 +22,21 @@ if (!result) {
 
 $count = $result->num_rows;
 
+// echo "<br># of rows returned: ";
+// echo $count;
+
 if ($count == 1) {
 //     echo("login success");
-    $_SESSION['user'] = $myusername;
-    $_SESSION['password'] = $mypassword;
+    $_SESSION['user'] = $username;
+    $_SESSION['password'] = $password;
+//     echo "<br>dumping session: ";
+//     var_dump($_SESSION);
     header("Location:loginSuccess.php");
 } else {
-//     echo("login failed");
+//     echo "<br>login failed"; 
     header("Location:userlogin.php");
     $_SESSION['badPass']++;
 }
+
+
 

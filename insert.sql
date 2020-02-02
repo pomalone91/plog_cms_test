@@ -19,3 +19,5 @@ WHERE id IN (9)
 -- Reset passwords
 UPDATE user SET authentication_string = PASSWORD('plog90'), password_last_changed = NULL
 WHERE user.Host = 'localhost' AND user.User = 'root';
+
+INSERT INTO blog.users (username, password, addedAt) VALUES ('admin', '5810027b75b1281dbdea90b4e4ff60fa', CURRENT_DATE())
