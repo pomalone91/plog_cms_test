@@ -2,7 +2,7 @@
 require_once '../DataBaseConnection.php';
 session_start();
 
-if ($_SESSION['success'] == 1) {
+if ($_SESSION['user'] == 'admin') {
     // Table with published articles w/ buttons to delete
     echo '<h2> Published Articles </h2>';
     echo '<form action="delete.php" method="post">';
@@ -88,7 +88,7 @@ if ($_SESSION['success'] == 1) {
     echo '</body>';
     echo '</html>';
 
-    echo "Session user: <br>";
+//     echo "Session user: <br>";
 //     var_dump($_SESSION);
 } else {
     header("Location:userlogin.php");

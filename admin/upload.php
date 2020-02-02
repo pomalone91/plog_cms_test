@@ -2,7 +2,7 @@
 session_start();
 require_once '../DataBaseConnection.php';
 
-if ($_SESSION['success'] == 1) {
+if ($_SESSION['user'] == 'admin') {
     $target_dir = "/Library/WebServer/Documents/plog_cms_test/articles/";
     $filename = basename($_FILES["fileToUpload"]["name"]);
     $target_file = $target_dir . $filename;

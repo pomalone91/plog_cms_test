@@ -1,8 +1,6 @@
 <?php
 require_once '../DataBaseConnection.php';
 
-print_r($_POST);
-
 // Set variables
 $username = 'admin';
 $password = 'TestPassword12345-0987';
