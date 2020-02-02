@@ -18,8 +18,8 @@ if ($_SESSION['success'] == 1) {
 
     // $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-    echo "var_dump $_POST: ";
-    var_dump($_POST);
+//     echo "var_dump $_POST: ";
+//     var_dump($_POST);
     echo "<br>";
 
     // Check if file is markdown

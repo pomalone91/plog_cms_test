@@ -89,7 +89,7 @@ if ($_SESSION['success'] == 1) {
     echo '</html>';
 
     echo "Session user: <br>";
-    var_dump($_SESSION);
+//     var_dump($_SESSION);
 } else {
     header("Location:userlogin.php");
 }
