@@ -37,15 +37,15 @@
         </style>
         <script>
             function loginfilled() {
-                name = document.getElementById('myusername').value;
-                password = document.getElementById('mypassword').value;
+                name = document.getElementById('username').value;
+                password = document.getElementById('password').value;
                 loginFilled = true;
                 if (name == "") {
-                    document.getElementById('myusername').style.borderColor = "red"
+                    document.getElementById('username').style.borderColor = "red"
                     loginFilled = false;
                 }
                 if (password == "") {
-                    document.getElementById('mypassword').style.borderColor = "red"
+                    document.getElementById('password').style.borderColor = "red"
                     loginFilled = false;
                 }
                 return loginFilled
@@ -66,12 +66,12 @@
                     <tr>
                         <td width="78">Username</td>
                         <td width="6">:</td>
-                        <td width="294"><input name="myusername" type="text" id="myusername" class="error"></td>
+                        <td width="294"><input name="username" type="text" id="username" class="error"></td>
                     </tr>
                     <tr>
                         <td>Password</td>
                         <td>:</td>
-                        <td><input name="mypassword" type="password" id="mypassword">
+                        <td><input name="password" type="password" id="password">
                                                     </td>
 
                     </tr>

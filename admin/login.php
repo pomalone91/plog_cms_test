@@ -4,6 +4,7 @@ unset($_SESSION['badPass']);
 
 $myusername = $_POST['myusername'];
 $mypassword = $_POST['mypassword'];
+$_SESSION['success'] = 0;
 
 require_once '../DataBaseConnection.php';
 
@@ -26,10 +27,14 @@ if ($count == 1) {
 //     echo("login success");
     $_SESSION['user'] = $myusername;
     $_SESSION['password'] = $mypassword;
+    $_SESSION['success'] = 1;
+//     var_dump($_SESSION);
     header("Location:loginSuccess.php");
 } else {
 //     echo("login failed");
     header("Location:userlogin.php");
     $_SESSION['badPass']++;
 }
+
+
 

@@ -1,4 +1,12 @@
 <?php
+// *** LIVE SET UP *** //
+// $host = "127.0.0.1";
+// $user = "root";
+// $password = "plog90";
+// $dbname = "Library";
+// $key = "99754106633f94d350db34d548d6091a";
+
+// *** TEST SET UP *** //
 $host = "127.0.0.1";
 $user = "root";
 $password = "lemming89";
