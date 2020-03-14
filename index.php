@@ -14,7 +14,7 @@
 // Show header
 include "header.php";
 include "markdownHandler.php";
-displayHeader("Home");
+displayHeader("Nine Circles of Shell");
 
 // Make connection to database.
 require_once 'DataBaseConnection.php';
