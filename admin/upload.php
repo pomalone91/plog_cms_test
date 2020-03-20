@@ -4,9 +4,11 @@ require_once '../DataBaseConnection.php';
 
 if ($_SESSION['user'] == 'admin') {
 //     $target_dir = "/Library/WebServer/Documents/plog_cms_test/articles/";
-    /*LIVE DIRECTORY*/ $target_dir = "/var/www/html/ninecirclesofshell.com/public_html/articles";
+    /*LIVE DIRECTORY*/ $target_dir = "/var/www/html/ninecirclesofshell.com/public_html/articles/";
     $filename = basename($_FILES["fileToUpload"]["name"]);
     $target_file = $target_dir . $filename;
+    echo $target_file;
+    echo '<br>';
 
     // Meta data
     $title = $_POST['title'];
@@ -52,9 +54,15 @@ if ($_SESSION['user'] == 'admin') {
     // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+            echo "The file ". basename($_FILES["fileToUpload"]["name"]). " has been uploaded.";
         } else {
             echo "Sorry, there was an error uploading your file.";
+            echo '<br>';
+            echo $_FILES["fileToUpload"]["tmp_name"];
+            echo '<br>';
+            echo basename($_FILES["fileToUpload"]["name"]);
+            echo '<br>';
+            var_dump($_FILES);
         }
     }
 
