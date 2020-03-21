@@ -1,4 +1,6 @@
 <?php
+// TODO - Add revision button to undeleted rows
+// TODO - hook up revision button to republish.php
 require_once '../DataBaseConnection.php';
 session_start();
 
@@ -7,10 +9,10 @@ if ($_SESSION['user'] == 'admin') {
     echo '<h2> Published Articles </h2>';
     echo '<form action="delete.php" method="post">';
     echo '<table>';
-        echo "<tr><th> ID </th><th> Title </th><th> Published </th></tr>";
+        echo "<tr><th> ID </th><th> Title </th><th> Published </th><th> Last Revised </th></tr>";
     // Query for published articles
     // SELECT where deletedAt is NULL
-    $statement = "SELECT id, title, filename, pubDate FROM blog.articles WHERE deleteDate IS NULL ORDER BY id";
+    $statement = "SELECT id, title, filename, pubDate, lastPublished FROM blog.articles WHERE deleteDate IS NULL ORDER BY id";
     $results = $con->query($statement);     // Get array of results of query
 
     // Show error message.
@@ -27,6 +29,7 @@ if ($_SESSION['user'] == 'admin') {
         echo '<td>' . $row['title'] . '</td>';
         echo '<td>' . $row['filename'] . '</td>';
         echo '<td>' . $row['pubDate'] . '</td>';
+        echo '<td>' . $row['lastPublished'] . '</td>';
         echo '<td><input type="checkbox" name="id' . $row['id'] . '" value="' .$row['id'] . '"> Unpublish';
         echo '</tr>';
     }

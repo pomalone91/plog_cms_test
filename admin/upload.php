@@ -1,4 +1,5 @@
 <?php
+// TODO - Clean up print statments
 session_start();
 require_once '../DataBaseConnection.php';
 
