@@ -21,16 +21,20 @@ if ($_SESSION['user'] == 'admin') {
     }
     
     // TODO - New form with dropdown menu for re-upload
-    echo '<form action="reupload" method="post" enctype="multipart/form-data">';
-    echo '<select id="reuploads">';
+    echo '<select id="reuploads" name="article-list" form="reuploadform">';
     while ($row = $results->fetch_assoc()) {
+        $id = $row['id'];
         $title = $row['title'];
-        echo '<option value="' . $title . '">' . $title . '</option>';
+        echo '<option value="' . $id . '">' . $title . '</option>';
     }
     echo '</select>';
+    
+    echo '<form action="reupload" method="post" enctype="multipart/form-data" id="reuploadform">';
     echo '<input type="file" name="fileToUpload" id="fileToUpload">';
     echo '<input type="submit" value="Upload File" name="submit">';
     echo '</form>';
+    
+    
     
 
     // Query for published articles

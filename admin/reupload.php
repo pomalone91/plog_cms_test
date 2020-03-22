@@ -8,6 +8,7 @@ if ($_SESSION['user'] == 'admin') {
 //     /*LIVE DIRECTORY*/ $target_dir = "/var/www/html/ninecirclesofshell.com/public_html/articles/";
     $filename = basename($_FILES["fileToUpload"]["name"]);
     $target_file = $target_dir . $filename;
+    $id = $_POST['article-list'];
     echo $filename;
     echo $target_file;
 //     echo '<br>';
@@ -49,40 +50,71 @@ if ($_SESSION['user'] == 'admin') {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
-
-    // Do the upload
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file ". basename($_FILES["fileToUpload"]["name"]). " has been uploaded.";
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-            echo '<br>';
-            echo $_FILES["fileToUpload"]["tmp_name"];
-            echo '<br>';
-            echo basename($_FILES["fileToUpload"]["name"]);
-            echo '<br>';
-            var_dump($_FILES);
-        }
-    }
-
-    // If the file was uploaded, add some records to the database.
-    if ($uploadOk == 1) {
-        $statement = $con->prepare("INSERT INTO blog.articles (pubDate, title, summary, filename) VALUE (CURRENT_DATE(), ?, ?, ?)");
-        $statement->bind_param("sss", $title, $summary, $filename);
-        $result = $statement->execute();
     
-    //     Uncomment below to show error message in testing
- 
-    //     if (!$results) {
-    //         $message = "Whole query " . $search;
-    //         echo $message;
-    //         die('Invalid query: ' . mysqli_error($con));
-    //     }
+    // TODO - Check if filename matches at id. If it doesn't, cancel the upload and warn user
+    // query table for filename at id
+    // compare and if no match abort upload
+    echo 'id is ';
+    echo $id;
+    $fileNameInTables = '';
+    $fileNameStatement = "SELECT filename FROM blog.articles WHERE id = " . $id;
+    $results = $con->query($fileNameStatement);
+    
+    // Show error message.
+    if (!$results) {
+        $message = "Whole query " . $search;
+        echo $message;
+        die('Invalid query: ' . mysqli_error($con));
+    } else {
+        echo '<br> Filename in table is ';
+    
+        while ($row = $results->fetch_assoc()) {
+            $fileNameInTables = $row['filename'];
+        }    
+    }
+    echo $fileNameInTables;
+    
+    if ($fileNameInTables != $filename) {
+        echo "file name does not match value in table " . $fileNameInTables;
+    } else {
+        // Do the upload
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                echo "The file ". basename($_FILES["fileToUpload"]["name"]). " has been uploaded.";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+                echo '<br>';
+                echo $_FILES["fileToUpload"]["tmp_name"];
+                echo '<br>';
+                echo basename($_FILES["fileToUpload"]["name"]);
+                echo '<br>';
+                var_dump($_FILES);
+            }
+        }
 
-    }    
+        // If the file was re-uploaded, update records in database
+        if ($uploadOk == 1) {
+            echo '<br>';
+            echo 'id is ';
+            echo $id;
+            echo '<br>';
+            $statement = $con->prepare("UPDATE blog.articles SET lastPublished = CURRENT_DATE() WHERE id = " . $id);
+    //         $statement->bind_param("i", $id);
+            $result = $statement->execute();
+    
+        //     Uncomment below to show error message in testing
+ 
+        //     if (!$results) {
+        //         $message = "Whole query " . $search;
+        //         echo $message;
+        //         die('Invalid query: ' . mysqli_error($con));
+        //     }
+
+        }    
+    }   
 } else {
     header("Location:userlogin.php");
 }
