@@ -2,25 +2,53 @@
 // TODO - Add revision button to undeleted rows
 // TODO - hook up revision button to republish.php
 require_once '../DataBaseConnection.php';
+include '../header.php';
 session_start();
 
 if ($_SESSION['user'] == 'admin') {
     // Table with published articles w/ buttons to delete
+    displayHeader('Admin Interface');
     echo '<h2> Published Articles </h2>';
-    echo '<form action="delete.php" method="post">';
-    echo '<table>';
-        echo "<tr><th> ID </th><th> Title </th><th> Published </th><th> Last Revised </th></tr>";
-    // Query for published articles
-    // SELECT where deletedAt is NULL
-    $statement = "SELECT id, title, filename, pubDate, lastPublished FROM blog.articles WHERE deleteDate IS NULL ORDER BY id";
+    
+    // Select article titles for re-upload
+    $statement = "SELECT id, title, filename FROM blog.articles WHERE deleteDate IS NULL ORDER BY id";
     $results = $con->query($statement);     // Get array of results of query
-
     // Show error message.
     if (!$results) {
         $message = "Whole query " . $search;
         echo $message;
         die('Invalid query: ' . mysqli_error($con));
     }
+    
+    // TODO - New form with dropdown menu for re-upload
+    echo '<form action="reupload" method="post" enctype="multipart/form-data">';
+    echo '<select id="reuploads">';
+    while ($row = $results->fetch_assoc()) {
+        $title = $row['title'];
+        echo '<option value="' . $title . '">' . $title . '</option>';
+    }
+    echo '</select>';
+    echo '<input type="file" name="fileToUpload" id="fileToUpload">';
+    echo '<input type="submit" value="Upload File" name="submit">';
+    echo '</form>';
+    
+
+    // Query for published articles
+    // SELECT where deletedAt is NULL    
+    $statement = "SELECT id, title, filename, pubDate, lastPublished FROM blog.articles WHERE deleteDate IS NULL ORDER BY id";
+    $results = $con->query($statement);     // Get array of results of query
+    // Show error message.
+    if (!$results) {
+        $message = "Whole query " . $search;
+        echo $message;
+        die('Invalid query: ' . mysqli_error($con));
+    }
+    // Form for unpublishing articles
+    echo '<form action="delete.php" method="post">';
+    echo '<table>';
+        echo "<tr><th> ID </th><th> Title </th><th> Published </th><th> Last Revised </th></tr>";
+
+
 
     // Loop through the articles pulled in by the query.
     while ($row = $results->fetch_assoc()) {
