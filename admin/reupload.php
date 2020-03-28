@@ -4,8 +4,8 @@ session_start();
 require_once '../DataBaseConnection.php';
 
 if ($_SESSION['user'] == 'admin') {
-    $target_dir = "/Library/WebServer/Documents/plog_cms_test/articles/";
-//     /*LIVE DIRECTORY*/ $target_dir = "/var/www/html/ninecirclesofshell.com/public_html/articles/";
+//     $target_dir = "/Library/WebServer/Documents/plog_cms_test/articles/";
+    /*LIVE DIRECTORY*/ $target_dir = "/var/www/html/ninecirclesofshell.com/public_html/articles/";
     $filename = basename($_FILES["fileToUpload"]["name"]);
     $target_file = $target_dir . $filename;
     $id = $_POST['article-list'];
@@ -82,6 +82,12 @@ if ($_SESSION['user'] == 'admin') {
             echo "Sorry, your file was not uploaded.";
         // if everything is ok, try to upload file
         } else {
+            // If file already exists delete it
+            if (file_exists($target_file)) {
+                unlink($target_file);
+            }
+            
+            // Upload file
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 echo "The file ". basename($_FILES["fileToUpload"]["name"]). " has been uploaded.";
             } else {

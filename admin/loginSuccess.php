@@ -29,7 +29,7 @@ if ($_SESSION['user'] == 'admin') {
     }
     echo '</select>';
     
-    echo '<form action="reupload" method="post" enctype="multipart/form-data" id="reuploadform">';
+    echo '<form action="reupload.php" method="post" enctype="multipart/form-data" id="reuploadform">';
     echo '<input type="file" name="fileToUpload" id="fileToUpload">';
     echo '<input type="submit" value="Upload File" name="submit">';
     echo '</form>';
