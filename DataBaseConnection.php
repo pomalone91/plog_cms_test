@@ -1,17 +1,17 @@
 <?php
 /*** LIVE SET UP ***/
-$host = "127.0.0.1";
-$user = "root";
-$dbPassword = "plog90";
-$dbname = "Library";
-$key = "99754106633f94d350db34d548d6091a";
-
-/*** TEST SET UP ***/
 // $host = "127.0.0.1";
 // $user = "root";
-// $dbPassword = "lemming89";
-// $dbname = "blog";
+// $dbPassword = "plog90";
+// $dbname = "Library";
 // $key = "99754106633f94d350db34d548d6091a";
+
+/*** TEST SET UP ***/
+$host = "127.0.0.1";
+$user = "root";
+$dbPassword = "lemming89";
+$dbname = "blog";
+$key = "99754106633f94d350db34d548d6091a";
 
 $con = new mysqli($host, $user, $dbPassword, $dbname)
 	or die ('Could not connect to the database server' . mysqli_connect_error($con));

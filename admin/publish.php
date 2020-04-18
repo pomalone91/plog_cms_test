@@ -25,7 +25,7 @@ if ($inString == '()') {
     header("Location:loginSuccess.php");
 } else {
     // SQL Query 
-    $sql = 'UPDATE blog.articles SET deleteDate = NULL WHERE id IN ' . $inString;
+    $sql = 'UPDATE blog.articles SET deleteDate = NULL, lastPublished = CURRENT_DATE() WHERE id IN ' . $inString;
     $statement = $con->prepare($sql);
     $result = $statement->execute();
 }
