@@ -1,9 +1,4 @@
 <?php
-// TODO - Forward paulmalone.blog
-// TODO - Fix article order in index.php
-// TODO - Update about section
-// TODO - Update Plog Mac app
-// TODO - Write "Soul of the Same Machine"
 // TODO - Write "Stickiness of Religion"
 /* TODO - Create web interface for CMS
         - Login
@@ -24,7 +19,7 @@ require_once 'DataBaseConnection.php';
 echo '<div id="articles">';
 
 // Gather 5 newest articles from database
-$statement = "SELECT id, title, summary, pubDate FROM blog.articles WHERE deleteDate is NULL ORDER BY pubDate DESC LIMIT 5";
+$statement = "SELECT id, title, filename, pubDate FROM blog.articles WHERE deleteDate is NULL ORDER BY pubDate DESC LIMIT 5";
 $results = $con->query($statement);     // Get array of results of query
 
 // Show error message.
@@ -40,7 +35,8 @@ while ($row = $results->fetch_assoc()) {
     // Make a new article tag for that article.
     echo "<article>";
     echo '<h2><a href="article.php?id=' . $row['id'] . '">' . $row['title'] . '</a></h2>';
-    echo "<p> <strong>" . parseMarkdown($row['summary']) . "</strong> </p>";
+    // echo "<p>" . parseMarkdown($row['summary']) . " </p>";
+	echo "<p>" . getMarkdown("articles/" . $row['filename']) . " </p>";
     echo "<p>" . $row['content'] . "</p>";
     echo "</article>";
 }

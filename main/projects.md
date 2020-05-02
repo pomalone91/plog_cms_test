@@ -2,14 +2,16 @@
 Things that I work on intermittently. 
 
 ### CRoll
-I rewrote Termiroll in C (because I wanted to hurt myself). CRoll fixes some bugs that Termiroll had, but also provides some new functionality.
+I rewrote Termiroll in C (because I wanted to hurt myself). CRol fixes some bugs that Termiroll had, but also provides some new functionality.
+
+For installation use `brew install pomalone91/termiroll/crol`
 
 #### Roll Multiple dice at once
 You can now roll multiple dice at once when you use `roll` from the command line. Simply list each roll with a space after it. For example input `roll 1d6 2d1+2 1d20` could produce output that looked like `2 4 5`. The roll for each dice is displayed individually and not summed together.
-![Multiple rolls on the same line using CRoll](images/croll-sameline.png)
+![Multiple rolls on the same line using CRol](images/croll-sameline.png)
 
 #### Batch files!
-Before if you wanted to use Termiroll to roll initiative for a group of characters all at once you would have probably needed to write a shell script to repeatedly call `roll` for each character. Now you can put all of your rolls into one file and pass `roll` a path to that file as an argument. The syntax for doing this looks like `roll -b rollfile.txt`. As long as the file is in a plaintext format, and each roll is on its own line, CRoll should be able to read it. You can even label your rolls and CRoll will put those labels in the output so you can keep track of who rolled what. 
+Before if you wanted to use Termiroll to roll initiative for a group of characters all at once you would have probably needed to write a shell script to repeatedly call `roll` for each character. Now you can put all of your rolls into one file and pass `roll` a path to that file as an argument. The syntax for doing this looks like `roll -b rollfile.txt`. As long as the file is in a plaintext format, and each roll is on its own line, CRol should be able to read it. You can even label your rolls and CRol will put those labels in the output so you can keep track of who rolled what. 
 
 ![Batch file with multiple labeled rolls in it](images/batchfile.png)
 ![Batch file output](images/batchoutput.png)
