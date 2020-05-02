@@ -6,8 +6,8 @@ displayHeader("Archive");
 require_once 'DataBaseConnection.php';
 
 // Greeting Message and SQL query for articles
-echo "<h1>Archive</h1>";
-$statement = "SELECT * FROM blog.articles where deleteDate is NULL ORDER BY pubDate DESC";
+echo "<h2>Archive</h2>";
+$statement = "SELECT id, title, pubDate FROM blog.articles where deleteDate is NULL ORDER BY pubDate DESC";
 $results = $con->query($statement);     // Get array of results of query
 
 // Show error message.
@@ -17,13 +17,13 @@ if (!$results) {
     die('Invalid query: ' . mysqli_error($con));
 }
 
+// Start table tag
+
 // Loop through the articles pulled in by the query.
 while ($row = $results->fetch_assoc()) {
     // Make a new article tag for that article.
     echo "<article>";
-    echo '<h2><a href="article.php?id=' . $row['id'] . '">' . $row['title'] . '</a></h2>';
-    echo "<p> <strong>" . $row['summary'] . "</strong> </p>";
-    echo "<p>" . $row['content'] . "</p>";
+    echo '<strong><a href="article.php?id=' . $row['id'] . '">' . $row['title'] . '</a></strong> - ' . $row['pubDate'];
     echo "</article>";
 }
 

@@ -19,7 +19,7 @@ require_once 'DataBaseConnection.php';
 echo '<div id="articles">';
 
 // Gather 5 newest articles from database
-$statement = "SELECT id, title, filename, pubDate FROM blog.articles WHERE deleteDate is NULL ORDER BY pubDate DESC LIMIT 5";
+$statement = "SELECT id, title, filename, pubDate, lastPublished FROM blog.articles WHERE deleteDate is NULL ORDER BY pubDate DESC LIMIT 5";
 $results = $con->query($statement);     // Get array of results of query
 
 // Show error message.
@@ -32,9 +32,17 @@ if (!$results) {
 
 // Loop through the articles pulled in by the query.
 while ($row = $results->fetch_assoc()) {
+    // Get dates
+    $pubDate = new DateTime($row['pubDate']);
+    $lastPublished = new DateTime($row['lastPublished']);
+    
     // Make a new article tag for that article.
     echo "<article>";
     echo '<h2><a href="article.php?id=' . $row['id'] . '">' . $row['title'] . '</a></h2>';
+    echo "<em>" . $pubDate->format('j F, Y') . "</em><br>";
+    if ($row['lastPublished'] != NULL) {
+        echo "<em> Last revised " . $lastPublished->format('j F, Y') . "</em>";    
+    }
     // echo "<p>" . parseMarkdown($row['summary']) . " </p>";
 	echo "<p>" . getMarkdown("articles/" . $row['filename']) . " </p>";
     echo "<p>" . $row['content'] . "</p>";
