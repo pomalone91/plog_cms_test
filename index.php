@@ -39,6 +39,7 @@ while ($row = $results->fetch_assoc()) {
 	echo "<p>" . getMarkdown("articles/" . $row['filename']) . " </p>";
     echo "<p>" . $row['content'] . "</p>";
     echo "</article>";
+    echo "<hr>";
 }
 
 echo '</div>';
