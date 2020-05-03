@@ -107,7 +107,7 @@ a {
 
 blockquote {
 	margin: 1.5em;
-	color:  #666;
+	color:  #555;
 }
 
 strong, dfn {
@@ -409,6 +409,70 @@ a:target, ol#footnotes li:target, sup a:target {
 
 a:target {
 	border:0;outline: 0;
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: #FFF;
+        color: black;
+    }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #151617;
+        color: #DADBE3;
+    }
+    
+    h2 {
+        color: white;
+    }
+    
+    a:focus, a:hover {
+        color: #A7353B;
+    }
+
+    a {
+        color: #F3666D/*#06c*/;
+    /* 	text-decoration: none; */
+    }
+    
+    h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+        text-decoration: none;
+        color: #F3666D;
+    }
+    
+    /* Code Highlighting */
+
+    code {
+        font-family: 'Menlo', monospace;
+        font-size:   10.5pt;
+    }
+
+    p > code {
+        padding:    0.2em 0.4em;
+        background: #000;
+    }
+
+    pre {
+        color:         #000;
+        text-align:    left;
+        line-height:   1.2em;
+        overflow-x:    scroll;
+    /* 	background:    #f8f8f8; */
+        padding:       20pt;
+        margin:        20pt 0;
+        border-radius: 3pt;
+        white-space:   pre-wrap;
+        tab-size:      4;
+    }
+    
+    blockquote {
+        margin: 1.5em;
+        color:  #999;
+    }
 }
 
 @media screen and (max-width: 768px) {
