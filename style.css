@@ -177,6 +177,16 @@ h1 + hr {
 	margin-top: 2em;
 }
 
+table, th, td {
+/*     border: 1px solid black; */
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    min-width: 200px;
+}
+
 ol#footnotes {
 	font-size:   0.75em;
 	padding-top: 1.5em;

@@ -18,14 +18,25 @@ if (!$results) {
 }
 
 // Start table tag
+echo '<table>';
+echo "<tr><th> Title </th><th> Published </th></tr>";
 
 // Loop through the articles pulled in by the query.
 while ($row = $results->fetch_assoc()) {
-    // Make a new article tag for that article.
-    echo "<article>";
-    echo '<strong><a href="article.php?id=' . $row['id'] . '">' . $row['title'] . '</a></strong> - ' . $row['pubDate'];
-    echo "</article>";
+    // Date set up
+    $pubDate = new DateTime($row['pubDate']);
+    
+    // Start a new table row
+    echo '<tr>';
+    echo '<td>';
+    echo '<strong><a href="article.php?id=' . $row['id'] . '">' . $row['title'] . '</a></strong>';
+    echo '</td>';
+    echo '<td>';
+    echo $pubDate->format('j F, Y');
+    echo "</td>";
+    echo '</tr>';
 }
+echo '</table>';
 
 include "footer.php";
 ?>
