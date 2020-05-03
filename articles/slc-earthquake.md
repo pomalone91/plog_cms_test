@@ -7,5 +7,13 @@ The last noticeable aftershock was March 25. It seems less and less likely that 
 
 > here's a block quote for testing. here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.
 
+    here's a code block
+    fdsafdsafdsafdsafdsaf
+    fdasfdas
+    fdsaf
+    dsafdsafdas
+    fdsafdas
+    fdsa
+
 [sl]: https://www.sltrib.com/news/2020/03/18/earthquake-hits-utahs/
 [uu]: https://quake.utah.edu

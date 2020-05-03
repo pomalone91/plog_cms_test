@@ -457,7 +457,7 @@ a:target {
     }
 
     pre {
-        color:         #000;
+        color:         #999;
         text-align:    left;
         line-height:   1.2em;
         overflow-x:    scroll;
@@ -467,6 +467,7 @@ a:target {
         border-radius: 3pt;
         white-space:   pre-wrap;
         tab-size:      4;
+        background: #000;
     }
     
     blockquote {
