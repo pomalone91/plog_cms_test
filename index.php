@@ -52,6 +52,11 @@ while ($row = $results->fetch_assoc()) {
 
 echo '</div>';
 
+// Link to archive
+echo '<div id="more">';
+echo '<a href="archive.php">More articles...</a>';
+echo '</div>';
+
 // Show footer
 include "footer.php";
 ?>

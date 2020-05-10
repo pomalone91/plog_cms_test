@@ -1,15 +1,16 @@
 /*
-	Helvetica Neue
-
-	Demo css to show basic, more technical styling
-
-	Visit http://www.ulysses.app/styles for full reference
-
+    NCoS CSS
 */
 
 /* html {
 	background-color:  #37352B;
 } */
+
+/* 
+* {
+    border: 1px solid white;
+}
+ */
 
 body {
 	font-size:   13pt;
@@ -250,6 +251,16 @@ pre {
 	text-decoration: none;
 }
 
+#footer {
+/*    	color:       #526A51; */
+/* 	background-color:  #89252C; */
+/* 	width: 100%; */
+/* 	height: 75px; */
+/*     border-top: 5px solid #526A51; */
+/* 	margin-top: 20px;
+	margin-bottom: 20px; */
+}
+
 #banner {
 	margin: auto;
 	width: 100%; /*Edited*/
@@ -262,6 +273,17 @@ pre {
 /* 	width: 100%;/*750px;*/
 	max-width: 750px;
 	margin: auto;
+}
+
+#more {
+/*     border: 1px solid white; */
+    margin: auto;
+    text-align: center;
+    height: 200px;
+}
+
+#more a {
+    text-decoration: none;
 }
 
 .container {
@@ -435,13 +457,13 @@ a:target {
     }
 
     a {
-        color: #F3666D/*#06c*/;
+        color: #F24B50/*#06c*/;
     /* 	text-decoration: none; */
     }
     
     h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
         text-decoration: none;
-        color: #F3666D;
+        color: #F24B50;
     }
     
     /* Code Highlighting */
