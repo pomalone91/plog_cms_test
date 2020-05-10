@@ -6,6 +6,7 @@ function displayHeader($title) {
     echo '    <title>' . $title . '</title>';
     echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
     echo '    <link rel="stylesheet" type="text/css" href="style.css">';
+    echo '    <link rel="icon" type="img/ico" href="favicon.ico">';
     echo '</head>';
     echo '<body>';
     echo '    <div class="container">';

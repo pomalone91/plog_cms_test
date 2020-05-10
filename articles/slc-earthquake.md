@@ -5,5 +5,15 @@ It was a [magnitude 5.7][sl] earthquake that seems to have occurred in Magna. Th
 _Update March 28_<br>
 The last noticeable aftershock was March 25. It seems less and less likely that the first one on March 18 was a foreshock to "the big one". 
 
+> here's a block quote for testing. here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.here's a block quote for testing.
+
+    here's a code block
+    fdsafdsafdsafdsafdsaf
+    fdasfdas
+    fdsaf
+    dsafdsafdas
+    fdsafdas
+    fdsa
+
 [sl]: https://www.sltrib.com/news/2020/03/18/earthquake-hits-utahs/
 [uu]: https://quake.utah.edu
