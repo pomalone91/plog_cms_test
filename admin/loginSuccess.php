@@ -20,19 +20,19 @@ if ($_SESSION['user'] == 'admin') {
         die('Invalid query: ' . mysqli_error($con));
     }
     
-    // TODO - New form with dropdown menu for re-upload
-    echo '<select id="reuploads" name="article-list" form="reuploadform">';
-    while ($row = $results->fetch_assoc()) {
-        $id = $row['id'];
-        $title = $row['title'];
-        echo '<option value="' . $id . '">' . $title . '</option>';
-    }
-    echo '</select>';
-    
-    echo '<form action="reupload.php" method="post" enctype="multipart/form-data" id="reuploadform">';
-    echo '<input type="file" name="fileToUpload" id="fileToUpload">';
-    echo '<input type="submit" value="Upload File" name="submit">';
-    echo '</form>';
+    // New form with dropdown menu for re-upload
+//     echo '<select id="reuploads" name="article-list" form="reuploadform">';
+//     while ($row = $results->fetch_assoc()) {
+//         $id = $row['id'];
+//         $title = $row['title'];
+//         echo '<option value="' . $id . '">' . $title . '</option>';
+//     }
+//     echo '</select>';
+//     
+//     echo '<form action="reupload.php" method="post" enctype="multipart/form-data" id="reuploadform">';
+//     echo '<input type="file" name="fileToUpload" id="fileToUpload">';
+//     echo '<input type="submit" value="Upload File" name="submit">';
+//     echo '</form>';
     
     
     
@@ -57,11 +57,15 @@ if ($_SESSION['user'] == 'admin') {
     // Loop through the articles pulled in by the query.
     while ($row = $results->fetch_assoc()) {
         echo '<tr>';
+//         echo '<a href="articleupdate.php?id=' . $row['id'] . '">';
         echo '<td>' . $row['id']  . '</td>';
-        echo '<td>' . $row['title'] . '</td>';
+        echo '<td> <a href="articleupdate.php?id=' . $row['id'] . '">' . $row['title'] . 
+        '</a></td>';
+//         echo $row['id'];
         echo '<td>' . $row['filename'] . '</td>';
         echo '<td>' . $row['pubDate'] . '</td>';
         echo '<td>' . $row['lastPublished'] . '</td>';
+
         echo '<td><input type="checkbox" name="id' . $row['id'] . '" value="' .$row['id'] . '"> Unpublish';
         echo '</tr>';
     }

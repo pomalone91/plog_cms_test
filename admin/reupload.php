@@ -8,9 +8,16 @@ if ($_SESSION['user'] == 'admin') {
 //     /*LIVE DIRECTORY*/ $target_dir = "/var/www/html/ninecirclesofshell.com/public_html/articles/";
     $filename = basename($_FILES["fileToUpload"]["name"]);
     $target_file = $target_dir . $filename;
-    $id = $_POST['article-list'];
-    echo $filename;
-    echo $target_file;
+    $id = $_POST['id'];
+//     print_r($_FILES);
+//     echo 'id: ';
+//     echo $id;
+    echo '<br>';
+    print_r($_POST);
+    echo '<br>';
+//     echo $filename;
+//     echo '<br>';
+//     echo $target_file;
 //     echo '<br>';
 // 
 //     // Meta data
