@@ -48,7 +48,6 @@ if ($_SESSION['user'] == 'admin') {
         die('Invalid query: ' . mysqli_error($con));
     }
     // Form for unpublishing articles
-    echo '<form action="delete.php" method="post">';
     echo '<table>';
         echo "<tr><th> ID </th><th> Title </th><th> Published </th><th> Last Revised </th></tr>";
 
@@ -57,16 +56,12 @@ if ($_SESSION['user'] == 'admin') {
     // Loop through the articles pulled in by the query.
     while ($row = $results->fetch_assoc()) {
         echo '<tr>';
-//         echo '<a href="articleupdate.php?id=' . $row['id'] . '">';
         echo '<td>' . $row['id']  . '</td>';
         echo '<td> <a href="articleupdate.php?id=' . $row['id'] . '">' . $row['title'] . 
         '</a></td>';
-//         echo $row['id'];
         echo '<td>' . $row['filename'] . '</td>';
         echo '<td>' . $row['pubDate'] . '</td>';
         echo '<td>' . $row['lastPublished'] . '</td>';
-
-        echo '<td><input type="checkbox" name="id' . $row['id'] . '" value="' .$row['id'] . '"> Unpublish';
         echo '</tr>';
     }
 
@@ -74,15 +69,13 @@ if ($_SESSION['user'] == 'admin') {
     // Clicking it will launch a PHP script to insert it
     // When the button is clicked I need to get the ID for the entry it corresponds to into the $_SESSION? Or the $_POST? And then launch my delete.php script
     echo '</table>';
-    echo '<input type="submit">Unpublish</input>';
-    echo '</form>';
 
 
     // Second table showing deleted articles w/ buttons to publish
     echo '<h2> Unpublished </h2>';
-    echo '<form action="publish.php" method="post">';
+//     echo '<form action="publish.php" method="post">';
     echo '<table>';
-        echo "<tr><th> ID </th><th> Title </th><th> Published </th></tr>";
+    echo "<tr><th> ID </th><th> Title </th><th> Published </th></tr>";
     // Query for published articles
     // SELECT where deletedAt is NULL
     $statement = "SELECT id, title, filename, pubDate FROM blog.articles WHERE deleteDate IS NOT NULL ORDER BY id";
@@ -99,15 +92,13 @@ if ($_SESSION['user'] == 'admin') {
     while ($row = $results->fetch_assoc()) {
         echo '<tr>';
         echo '<td>' . $row['id']  . '</td>';
-        echo '<td>' . $row['title'] . '</td>';
+        echo '<td> <a href="articleupdate.php?id=' . $row['id'] . '">' . $row['title'] . 
+        '</a></td>';
         echo '<td>' . $row['filename'] . '</td>';
         echo '<td>' . $row['pubDate'] . '</td>';
-        echo '<td><input type="checkbox" name="id' . $row['id'] . '" value="' .$row['id'] . '"> Publish </td>';
         echo '</tr>';
     }
     echo '</table>';
-    echo '<input type="submit">Publish</input>';
-    echo '</form>';
 
     // Form to add new articles
     echo '<h2> Add new articles </h2>';

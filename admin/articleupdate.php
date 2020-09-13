@@ -10,7 +10,7 @@ if ($_SESSION['user'] == 'admin') {
 
     // Set up SQL query
     // TODO - don't use * in select statement
-    $statement = "SELECT id, title, filename, pubDate, lastPublished FROM blog.articles WHERE deleteDate IS NULL AND id =" . $id;
+    $statement = "SELECT id, title, filename, pubDate, lastPublished, deleteDate FROM blog.articles WHERE id =" . $id;
     $results = $con->query($statement);     // Get array of results of query
 
     // Show error message.
@@ -40,7 +40,29 @@ if ($_SESSION['user'] == 'admin') {
         if ($row['lastPublished'] != NULL) {
             echo "<em> Last revised " . $lastPublished->format('j F, Y') . "</em>";    
         }
+        echo '<br>';
+        echo 'Current Status: ';
+//         echo $row['deleteDate'];
+        $pub_option = '';   // Use this to decide which publication script to use
+        if ($row['deleteDate'] == NULL) {
+            $pub_option = 'Delete';
+            echo 'published';
+        } else {
+            $pub_option = 'Publish';
+            echo 'not published';
+        }
+        
         echo "</p>";
+        
+        // Button to publish/unpublish
+        echo '<form action="publish.php" method="post">';
+        echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
+        echo '<input type="hidden" name="option" value="' . $pub_option . '">';
+        echo '<input type="submit" value="' . $pub_option . '" name="submit">';
+        echo '</form>';
+        
+        
+
         
         // File update
         echo '<h3>File</h3>';
@@ -72,6 +94,15 @@ if ($_SESSION['user'] == 'admin') {
         // Show current publishing status.
         // If published show option to unpublish and vice versa
         echo '<h3>Publishing</h3>';
+        /* Show current publication status...
+            - Published or unpublished?
+            - Original pub date
+            - Last revised Date
+            - Button to click to publish/unpublished
+            
+            
+        */
+
                 
     //     echo "<h2>" . $row['title'] . "</h2>";
     //     echo "<p> <strong>" . $row['summary'] . "</strong> </p>";
