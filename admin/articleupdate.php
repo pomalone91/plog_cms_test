@@ -90,18 +90,8 @@ if ($_SESSION['user'] == 'admin') {
         // Show list of image files with options to delete and upload new ones
         echo '<h3>Images</h3>';
         
-        // Publishing options
-        // Show current publishing status.
-        // If published show option to unpublish and vice versa
-        echo '<h3>Publishing</h3>';
-        /* Show current publication status...
-            - Published or unpublished?
-            - Original pub date
-            - Last revised Date
-            - Button to click to publish/unpublished
-            
-            
-        */
+        // List of images currently uploaded for this article
+        // Upload form to pick a new image to add
 
                 
     //     echo "<h2>" . $row['title'] . "</h2>";
