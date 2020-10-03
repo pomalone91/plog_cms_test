@@ -88,7 +88,31 @@ if ($_SESSION['user'] == 'admin') {
         
         // Image management
         // Show list of image files with options to delete and upload new ones
-        echo '<h3>Images</h3>';
+        echo '<h3>Images</h3>';        
+        $imgStatement = "SELECT imageID, filename FROM blog.images WHERE articleID =" . $id;
+        $imgResults = $con->query($imgStatement);     // Get array of results of query
+        
+        // Show error message.
+        if (!$imgResults) {
+            $message = "Whole query " . $search;
+            echo $message;
+            die('Invalid query: ' . mysqli_error($con));
+        }
+        
+        // Loop through the articles pulled in by the query.
+        while ($imgRow = $imgResults->fetch_assoc()) {
+            $imgFilename = $imgRow['filename'];
+            echo '<br>' . $imgFilename . '<br>';
+        }
+
+        
+        echo '<form action="imageupload.php" method="post" enctype="multipart/form-data">';
+        // Extra hidden input to grab ID
+        echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
+//         echo 'File: ' . $row['filename'] . '<br>';
+        echo '<input type="file" name="fileToUpload" id="fileToUpload" value="' . $row['id'] . '">';
+        echo '<input type="submit" value="Upload File" name="submit">';
+        echo '</form>';
         
         // List of images currently uploaded for this article
         // Upload form to pick a new image to add
