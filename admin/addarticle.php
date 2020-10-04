@@ -24,6 +24,8 @@ if ($_SESSION['user'] == 'admin') {
     echo '<input type="file" name="fileToUpload" id="fileToUpload">';
     echo '<input type="submit" value="Upload File" name="submit">';
     echo '</form>';
+    
+    header("Location:userlogin.php");
 } else {
     header("Location:userlogin.php");
 }

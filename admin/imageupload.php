@@ -102,6 +102,7 @@ if ($_SESSION['user'] == 'admin') {
 //         }
 
     }
+    header("Location:articleupdate.php?id=" . $id);
 } else {
     header("Location:userlogin.php");
 }
