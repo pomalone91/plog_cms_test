@@ -4,8 +4,8 @@ session_start();
 require_once '../DataBaseConnection.php';
 
 if ($_SESSION['user'] == 'admin') {
-    $target_dir = "/Library/WebServer/Documents/plog_cms_test/articles/";
-//     /*LIVE DIRECTORY*/ $target_dir = "/var/www/html/ninecirclesofshell.com/public_html/articles/";
+//     $target_dir = "/Library/WebServer/Documents/plog_cms_test/articles/";
+    /*LIVE DIRECTORY*/ $target_dir = "/var/www/html/ninecirclesofshell.com/public_html/articles/";
     $filename = basename($_FILES["fileToUpload"]["name"]);
     $target_file = $target_dir . $filename;
     $id = $_POST['id'];
