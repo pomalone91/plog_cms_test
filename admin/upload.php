@@ -82,9 +82,7 @@ if ($_SESSION['user'] == 'admin') {
     //     }
 
     }
-    
-} else {
-    header("Location:userlogin.php");
 }
+header("Location:userlogin.php");
 
 ?>
