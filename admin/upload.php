@@ -83,6 +83,6 @@ if ($_SESSION['user'] == 'admin') {
 
     }
 }
-header("Location:userlogin.php");
+header("Location:loginSuccess.php");
 
 ?>
