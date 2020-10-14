@@ -6,13 +6,17 @@
         - Form for title, summary and url to file
 */
 
+// Make connection to database.
+require_once 'DataBaseConnection.php';
+
 // Show header
 include "header.php";
 include "markdownHandler.php";
+include "static-views.php";
+
 displayHeader("Nine Circles of Shell");
 
-// Make connection to database.
-require_once 'DataBaseConnection.php';
+
 
 // Greeting
 // echo "<h1>Welcome to the Pblog</h1>";
@@ -59,4 +63,8 @@ echo '</div>';
 
 // Show footer
 include "footer.php";
+
+// Get view count from table
+setViewCount('home', $con);
+
 ?>

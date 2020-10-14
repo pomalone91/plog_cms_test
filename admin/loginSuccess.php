@@ -26,10 +26,38 @@ if ($_SESSION['user'] == 'admin') {
 //     echo '</form>';
 //     echo '</body>';
 //     echo '</html>';
+    // Static page views
+    echo '<h2>Static Page Counts</h2>';
+
+    $staticStatement = "SELECT description, views FROM blog.static_views";
+    $staticResults = $con->query($staticStatement);     // Get array of results of query
+    
+//     $results = $con->query($statement);     // Get array of results of query
+    // Show error message.
+    if (!$staticResults) {
+        $message = "Whole query " . $search;
+        echo $message;
+        die('Invalid query: ' . mysqli_error($con));
+    }
+    echo '<div id="table-scroller">';
+    echo '<table>';
+    echo "<tr><th> Description </th><th> Views </th></tr>";
+
+        // Loop through the articles pulled in by the query.
+    while ($row = $staticResults->fetch_assoc()) {
+        echo '<tr>';
+        echo '<td>' . $row['description']  . '</td>';
+        echo '<td>' . $row['views'] . '</td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+    echo '</div>';
+
+    // Published Articles    
     echo '<h2> Published Articles </h2>';
     
     // Select article titles for re-upload
-    $statement = "SELECT id, title, filename FROM blog.articles WHERE deleteDate IS NULL ORDER BY id";
+    $statement = "SELECT id, title, filename, views FROM blog.articles WHERE deleteDate IS NULL ORDER BY id";
     $results = $con->query($statement);     // Get array of results of query
     // Show error message.
     if (!$results) {
@@ -57,7 +85,7 @@ if ($_SESSION['user'] == 'admin') {
 
     // Query for published articles
     // SELECT where deletedAt is NULL    
-    $statement = "SELECT id, title, filename, pubDate, lastPublished FROM blog.articles WHERE deleteDate IS NULL ORDER BY id";
+    $statement = "SELECT id, title, filename, pubDate, lastPublished, views FROM blog.articles WHERE deleteDate IS NULL ORDER BY id";
     $results = $con->query($statement);     // Get array of results of query
     // Show error message.
     if (!$results) {
@@ -68,7 +96,7 @@ if ($_SESSION['user'] == 'admin') {
     // Form for unpublishing articles
     echo '<div id="table-scroller">';
     echo '<table>';
-        echo "<tr><th> ID </th><th> Title </th><th> Filename </th><th> Published </th><th> Last Revised </th></tr>";
+        echo "<tr><th> ID </th><th> View Count </th><th> Title </th><th> Filename </th><th> Published </th><th> Last Revised </th></tr>";
 
 
 
@@ -76,9 +104,11 @@ if ($_SESSION['user'] == 'admin') {
     while ($row = $results->fetch_assoc()) {
         echo '<tr>';
         echo '<td>' . $row['id']  . '</td>';
+        echo '<td>' . $row['views'] . '</td>';
         echo '<td> <a href="articleupdate.php?id=' . $row['id'] . '">' . $row['title'] . 
         '</a></td>';
         echo '<td>' . $row['filename'] . '</td>';
+
         
         $pubDate = new DateTime($row['pubDate']);
         echo '<td>' . $pubDate->format('m-d-y') . '</td>';
@@ -99,10 +129,10 @@ if ($_SESSION['user'] == 'admin') {
 //     echo '<form action="publish.php" method="post">';
     echo '<div id="table-scroller">';
     echo '<table>';
-    echo "<tr><th> ID </th><th> Title </th><th> Filename </th><th> Published </th></tr>";
+    echo "<tr><th> ID </th><th> View Count </th><th> Title </th><th> Filename </th><th> Published </th></tr>";
     // Query for published articles
     // SELECT where deletedAt is NULL
-    $statement = "SELECT id, title, filename, pubDate FROM blog.articles WHERE deleteDate IS NOT NULL ORDER BY id";
+    $statement = "SELECT id, title, filename, pubDate, views FROM blog.articles WHERE deleteDate IS NOT NULL ORDER BY id";
     $results = $con->query($statement);     // Get array of results of query
 
     // Show error message.
@@ -116,9 +146,11 @@ if ($_SESSION['user'] == 'admin') {
     while ($row = $results->fetch_assoc()) {
         echo '<tr>';
         echo '<td>' . $row['id']  . '</td>';
+        echo '<td>' . $row['views'] . '</td>';
         echo '<td> <a href="articleupdate.php?id=' . $row['id'] . '">' . $row['title'] . 
         '</a></td>';
         echo '<td>' . $row['filename'] . '</td>';
+        
         $pubDate = new DateTime($row['pubDate']);
         echo '<td>' . $pubDate->format('m-d-y') . '</td>';
 //         echo '<td>' . $row['pubDate'] . '</td>';

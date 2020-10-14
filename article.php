@@ -47,6 +47,13 @@ while ($row = $results->fetch_assoc()) {
     echo getMarkdown("articles/" . $row['filename']);
 //     echo "<p>" . $row['content'] . "</p>";
     echo "</article>";
+    
+    // Update page view count
+    $views = $row['views'];
+    $views += 1;
+    
+    $viewsUpdateStatement = $con->prepare('UPDATE blog.articles SET views = ' . $views . ' WHERE id = ' . $id);
+    $viewsUpdateResults = $viewsUpdateStatement->execute();
 }
 include "footer.php";
 ?>

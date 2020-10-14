@@ -1,6 +1,9 @@
 <?php
 // Show header and title
+require_once 'DataBaseConnection.php';
+include "static-views.php";
 include "header.php";
+
 $title = "Projects";
 displayHeader($title);
 
@@ -11,4 +14,6 @@ echo getMarkdown($file);
 
 // Show the footer
 include "footer.php";
+
+setViewCount('projects', $con);
 ?>

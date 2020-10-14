@@ -1,6 +1,11 @@
 <?php
+// Make connection to database.
+require_once 'DataBaseConnection.php';
+
 // Show header and title
 include "header.php";
+include "static-views.php";
+
 $title = "About";
 displayHeader($title);
 
@@ -11,4 +16,8 @@ echo getMarkdown($aboutFile);
 
 // Show the footer
 include "footer.php";
+
+// Get view count from table
+setViewCount('about', $con);
+
 ?>
