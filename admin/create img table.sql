@@ -8,6 +8,7 @@ CREATE TABLE static_views (
 INSERT INTO static_views (description) VALUE ('home');
 INSERT INTO static_views (description) VALUE ('about');
 INSERT INTO static_views (description) VALUE('projects');
+INSERT INTO static_views (description) VALUE('resume');
 
 UPDATE blog.articles SET views = $views WHERE id = $id
 

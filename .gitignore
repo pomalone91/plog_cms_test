@@ -1,2 +1,4 @@
 # Files and folders to ignore
 images/
+articles/
+keys.php

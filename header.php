@@ -16,6 +16,7 @@ function displayHeader($title) {
     echo '                <li class="nav-item"><a href="archive.php">archive</a></li>';
     echo '                <li class="nav-item"><a href="about.php">about</a></li>';
     echo '                <li class="nav-item"><a href="projects.php">projects</a></li>';
+    echo '                <li class="nav-item"><a href="resume.php">resume</a></li>';
     echo '            </ul>';
     echo '        </div>';
     echo '        <div id="main">';

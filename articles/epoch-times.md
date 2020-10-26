@@ -1,1 +1,0 @@
-This article is about the epoch times

@@ -1,8 +1,13 @@
 ## Projects
 Things that I work on intermittently. 
 
-### CRoll
-I rewrote Termiroll in C (because I wanted to hurt myself). CRol fixes some bugs that Termiroll had, but also provides some new functionality.
+### This website!
+I've built a small blogging engine from scratch that runs this website. It generates the front page, converts Markdown entries to HTML and exposes some article data via a REST API. The Blog engine also includes a CMS which allows me to upload and publish new articles, delete existing articles, upload images related to articles and monitor traffic to the website.  This is all written using PHP and MySQL. NCoS is hosted on [Linode][li]. The content for this website is written using Markdown. I use [John Gruber's][df] Markdown Perl script to generate the HTML from the Markdown.
+
+### c_roll
+A terminal based TTRPG dice roller written in C.
+
+If your Macbook also doubles as a GM screen, then c_roll is for you! Rapidly roll any kind of dice with any modifier in the familiar 1d6+1 format right in your terminal! You can run it once straight from the command line using `roll 1d6+2`. Or you can simply use `roll` and then repeatedly make as many rolls as you like in interactive mode.
 
 For installation use `brew install pomalone91/termiroll/crol`
 
@@ -16,26 +21,15 @@ Before if you wanted to use Termiroll to roll initiative for a group of characte
 ![Batch file with multiple labeled rolls in it](images/batchfile.png)
 ![Batch file output](images/batchoutput.png)
 
+### Jurn
+A MacOS journaling application in progress written in Objective-C. 
+
+![Jurn](images/jurn.png)
 
 ### Diceroller
 ![Diceroller iOS application](images/diceroller.png)
 
 My only real foray into iOS development. You can see the code at [github][ghd].
-
-### This website
-I'm steadily building and upgrading the CMS (content management system) for this website. Plog is hosted on [Linode][li]. The content for this website is written using Markdown. I use [John Gruber's][df] markdown perl script to generate the HTML from the Markdown.
-
-### Termiroll
-![termiroll interactive mode](images/termiroll_interactive.png)
-
-If your Macbook also doubles as a GM screen, then Termiroll is for you! Rapidly roll any kind of dice with any modifier in the familiar 1d6+1 format right in your terminal! You can run it once straight from the command line using `roll 1d6+2`. Or you can simply use `roll` and then repeatedly make as many rolls as you like in interactive mode.
-
-#### Installation
-You can use [Homebrew][hb] to install Termiroll.
-
-`brew install pomalone91/termiroll/termiroll`
-
-You can visit the project page here on [Github][gh].
 
 [hb]: https://brew.sh
 [gh]: https://github.com/pomalone91/termiroll
