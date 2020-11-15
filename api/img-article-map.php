@@ -1,10 +1,16 @@
 <?php
 // Connect to database
-require_once 'DataBaseConnection.php';
+require_once '../DataBaseConnection.php';
+
+// API request should include the article id
+$articleID = $_GET['id'];
 
 // Query database
-$statement = "SELECT id, title, summary, pubDate, filename FROM blog.articles WHERE deleteDate is NULL ORDER BY pubDate DESC";
+$statement = "SELECT imageID, filename FROM blog.images WHERE articleID = " . $articleID .  " AND deleteDate is NULL";
+
 $results = $con->query($statement);     // Get array of results of query
+
+// print_r($results);
 
 // Show error message.
 if (!$results) {
@@ -16,14 +22,6 @@ if (!$results) {
 // Fetch data from results and encode in JSON
 $resultsArray = array();
 while ($row = $results->fetch_assoc()) {
-    // Get the raw markdown for the article from the file name
-    $filename = $row['filename'];
-    $contents = file_get_contents('articles/' . $filename);
-
-    // Append that to the end of the row array
-    $row += array('markdown' => $contents);
-    
-//     echo $filename;
     $resultsArray[] = $row;
 }
 // print_r($resultsArray);

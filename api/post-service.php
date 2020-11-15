@@ -1,6 +1,6 @@
 <?php
 // Connect to database
-require_once 'DataBaseConnection.php';
+require_once '../DataBaseConnection.php';
 
 // Get JSON data
 $data = json_decode(file_get_contents("php://input"));

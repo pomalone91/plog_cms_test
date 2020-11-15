@@ -37,3 +37,13 @@ INSERT INTO blog.images (articleID, filename) VALUE (?, ?)
 INSERT INTO blog.articles (pubDate, title, summary, filename) VALUE (CURRENT_DATE(), ?, ?, ?)
 
 ALTER TABLE blog.images AUTO_INCREMENT;
+
+
+ALTER TABLE blog.images
+DROP PRIMARY KEY,
+CHANGE imageID imageID int(11);
+
+ALTER TABLE blog.images
+ADD PRIMARY KEY (imageID, filename);
+
+ALTER TABLE blog.images MODIFY imageID INTEGER NOT NULL AUTO_INCREMENT;
