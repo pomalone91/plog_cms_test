@@ -1,4 +1,5 @@
 # Files and folders to ignore
 images/
 articles/
+Markdown.pl
 keys.php

@@ -47,3 +47,19 @@ ALTER TABLE blog.images
 ADD PRIMARY KEY (imageID, filename);
 
 ALTER TABLE blog.images MODIFY imageID INTEGER NOT NULL AUTO_INCREMENT;
+
+/*Manually adding image mappings*/
+INSERT INTO blog.images (articleID, filename, createdAt) VALUES 
+    (75, 'arld_script-location.png', CURRENT_DATE()),
+    (10, 'terminal_folder_open.png', CURRENT_DATE()),
+    (10, 'carthage_at_work.png', CURRENT_DATE()),
+    (10, 'framework.png', CURRENT_DATE()),
+    (10, 'xcode-navigation.png', CURRENT_DATE()),
+    (10, 'embedding_framework.png', CURRENT_DATE()),
+    (96, 'croll-release.png', CURRENT_DATE()),
+    (42, 'shit-uml.png', CURRENT_DATE()),
+    (42, 'mac-client.png', CURRENT_DATE()),
+    (43, 'sftp-prompt.png', CURRENT_DATE()),
+    (9, 'skaven_front.jpeg', CURRENT_DATE()),
+    (9, 'skaven_side.jpeg', CURRENT_DATE()),
+    (9, 'skaven_rear.jpeg', CURRENT_DATE());
