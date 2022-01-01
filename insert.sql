@@ -43,10 +43,10 @@ VALUES
     ,(1, '2022-01-01 10:56:36', 2022, 01, 01, 1, '10:56:36');
     
 -- Insert new "articles" for static pages so I can track their views easier.
--- home 18
--- about 19
--- projects 20
--- resume 21
+-- home 18, 105
+-- about 19, 106
+-- projects 20, 107
+-- resume 21, 108
 INSERT INTO blog.articles (pubDate, title, summary, filename, deleteDate)
 VALUES 
     (CURRENT_DATE(), 'Home', '', '', NULL)

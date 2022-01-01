@@ -24,7 +24,7 @@ displayHeader("Nine Circles of Shell");
 echo '<div id="articles">';
 
 // Gather 5 newest articles from database
-$statement = "SELECT id, title, filename, pubDate, lastPublished FROM blog.articles WHERE deleteDate is NULL ORDER BY pubDate DESC LIMIT 5";
+$statement = "SELECT id, title, filename, pubDate, lastPublished FROM blog.articles WHERE deleteDate is NULL AND id NOT IN (18, 19, 20, 21) ORDER BY pubDate DESC LIMIT 5";
 $results = $con->query($statement);     // Get array of results of query
 
 // Show error message.
