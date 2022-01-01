@@ -35,3 +35,21 @@ CREATE TABLE blog.views (
     ,PRIMARY KEY (viewId)
     ,FOREIGN KEY (articleId) REFERENCES articles(id)
 );
+
+-- Insert into views table
+INSERT INTO blog.views (articleId, viewedAt, view_year, view_month, view_day, view_quarter, view_time)
+VALUES 
+    (NULL, '2022-01-01 10:56:36', 2022, 01, 01, 1, '10:56:36')
+    ,(1, '2022-01-01 10:56:36', 2022, 01, 01, 1, '10:56:36');
+    
+-- Insert new "articles" for static pages so I can track their views easier.
+-- home 18
+-- about 19
+-- projects 20
+-- resume 21
+INSERT INTO blog.articles (pubDate, title, summary, filename, deleteDate)
+VALUES 
+    (CURRENT_DATE(), 'Home', '', '', NULL)
+    ,(CURRENT_DATE(), 'About', '', 'main/about.md', NULL)
+    ,(CURRENT_DATE(), 'Projects', '', 'main/projects.md', NULL)
+    ,(CURRENT_DATE(), 'Resume', '', 'main/resume.md', NULL)

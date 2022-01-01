@@ -5,6 +5,7 @@ require_once 'DataBaseConnection.php';
 // Show header and title
 include "header.php";
 include "static-views.php";
+include "article_viewed.php";
 
 $title = "About";
 displayHeader($title);
@@ -19,5 +20,5 @@ include "footer.php";
 
 // Get view count from table
 setViewCount('about', $con);
-
+articleViewed(19, $con);
 ?>

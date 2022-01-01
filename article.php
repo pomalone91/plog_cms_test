@@ -2,6 +2,7 @@
 // TODO - Add original and revision dates above first H2
 include "header.php";
 include "markdownHandler.php";
+include "article_viewed.php";
 // Get article ID from URL
 $id = isset( $_GET['id'] ) ? $_GET['id'] : "";
 
@@ -56,5 +57,6 @@ while ($row = $results->fetch_assoc()) {
     $viewsUpdateResults = $viewsUpdateStatement->execute();
 }
 include "footer.php";
+articleViewed($id, $con);
 ?>
     

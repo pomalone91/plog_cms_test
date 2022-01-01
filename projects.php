@@ -3,6 +3,7 @@
 require_once 'DataBaseConnection.php';
 include "static-views.php";
 include "header.php";
+include "article_viewed.php";
 
 $title = "Projects";
 displayHeader($title);
@@ -16,4 +17,5 @@ echo getMarkdown($file);
 include "footer.php";
 
 setViewCount('projects', $con);
+articleViewed(20, $con);
 ?>

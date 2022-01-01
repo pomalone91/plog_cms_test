@@ -13,6 +13,7 @@ require_once 'DataBaseConnection.php';
 include "header.php";
 include "markdownHandler.php";
 include "static-views.php";
+include "article_viewed.php";
 
 displayHeader("Nine Circles of Shell");
 
@@ -66,5 +67,8 @@ include "footer.php";
 
 // Get view count from table
 setViewCount('home', $con);
+
+// Add to view table... null articleIds in table mean home page visits.
+articleViewed(18, $con);
 
 ?>
