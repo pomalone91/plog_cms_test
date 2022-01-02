@@ -53,3 +53,27 @@ VALUES
     ,(CURRENT_DATE(), 'About', '', 'main/about.md', NULL)
     ,(CURRENT_DATE(), 'Projects', '', 'main/projects.md', NULL)
     ,(CURRENT_DATE(), 'Resume', '', 'main/resume.md', NULL)
+    
+-- How many site visits do I get each year?
+-- Site visits defined here as visits to the home page
+SELECT 
+    v.view_year
+    ,COUNT(*) - 1 AS 'count'
+FROM blog.articles a
+    LEFT JOIN blog.views v ON a.id = v.articleId
+WHERE a.title = "Home"
+GROUP BY v.view_year
+ORDER BY v.view_year DESC;
+
+    
+-- Query to get article views by ranks
+SELECT 
+    a.title
+    ,COUNT(*) - 1 AS 'count'
+    ,a.pubDate AS 'published'
+    ,a.lastPublished AS 'revised'
+FROM blog.articles a
+    LEFT JOIN blog.views v ON a.id = v.articleId
+WHERE a.deleteDate IS NULL
+GROUP BY a.title, a.pubDate, a.lastPublished
+ORDER BY COUNT(*) DESC, a.pubDate DESC;

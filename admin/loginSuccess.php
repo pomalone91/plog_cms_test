@@ -26,8 +26,46 @@ if ($_SESSION['user'] == 'admin') {
 //     echo '</form>';
 //     echo '</body>';
 //     echo '</html>';
+
+    /************************************ ANALYTICS *************************************/
+    echo '<h2>Analytics</h2>';
+    // Home page visits per year
+    echo '<h3>Site Visits Per Year</h3>';
+    $vpyStatement = 
+    'SELECT 
+        v.view_year
+        ,COUNT(*) - 1 AS "count"
+    FROM blog.articles a
+        LEFT JOIN blog.views v ON a.id = v.articleId
+    WHERE a.title = "Home"
+    GROUP BY v.view_year
+    ORDER BY v.view_year DESC';
+    $vpyResults = $con->query($vpyStatement);
+    
+        // Show error message.
+//     if (!$vpyResults) {
+//         $message = "Whole query " . $search;
+//         echo $message;
+//         die('Invalid query: ' . mysqli_error($con));
+//     }
+    
+    echo '<div id="table-scroller">';
+	echo '<table>';
+    echo "<tr><th> Year </th><th> Visits </th></tr>";
+
+    // Loop through years
+    while ($row = $vpyResults->fetch_assoc()) {
+        echo '<tr>';
+        echo '<td>' . $row['view_year']  . '</td>';
+        echo '<td>' . $row['count'] . '</td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+    echo '</div>';
+
+    
     // Static page views
-    echo '<h2>Static Page Counts</h2>';
+    echo '<h3>Static Page Counts 2021</h3>';
 
     $staticStatement = "SELECT description, views FROM blog.static_views";
     $staticResults = $con->query($staticStatement);     // Get array of results of query
