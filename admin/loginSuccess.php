@@ -72,11 +72,11 @@ if ($_SESSION['user'] == 'admin') {
     
 //     $results = $con->query($statement);     // Get array of results of query
     // Show error message.
-    if (!$staticResults) {
-        $message = "Whole query " . $search;
-        echo $message;
-        die('Invalid query: ' . mysqli_error($con));
-    }
+//     if (!$staticResults) {
+//         $message = "Whole query " . $search;
+//         echo $message;
+//         die('Invalid query: ' . mysqli_error($con));
+//     }
     echo '<div id="table-scroller">';
     echo '<table>';
     echo "<tr><th> Description </th><th> Views </th></tr>";

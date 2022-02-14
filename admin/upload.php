@@ -29,9 +29,9 @@ if ($_SESSION['user'] == 'admin') {
     // Check if file is markdown
     if(isset($_POST["submit"])) {
         $type = $_FILES["fileToUpload"]["type"];
-        echo $type;
+        echo 'Type: ' . $type;
         echo "<br>";
-        if($type != "text/markdown") {
+        if($type != "text/markdown" && $type != 'application/octet-stream') {
             echo "Bad file type. Should be plaintext Markdown<br>";
             $uploadOk = 0;
         }
@@ -69,20 +69,20 @@ if ($_SESSION['user'] == 'admin') {
 
     // If the file was uploaded, add some records to the database.
     if ($uploadOk == 1) {
-        $statement = $con->prepare("INSERT INTO blog.articles (pubDate, title, summary, filename) VALUE (CURRENT_DATE(), ?, ?, ?)");
+        $statement = $con->prepare("INSERT INTO blog.articles (pubDate, title, summary, filename, views) VALUE (CURRENT_DATE(), ?, ?, ?, 0)");
         $statement->bind_param("sss", $title, $summary, $filename);
         $result = $statement->execute();
     
     //     Uncomment below to show error message in testing
  
-    //     if (!$results) {
-    //         $message = "Whole query " . $search;
-    //         echo $message;
-    //         die('Invalid query: ' . mysqli_error($con));
-    //     }
+        if (!$results) {
+            $message = "Whole query " . $search;
+            echo $message;
+            die('Invalid query: ' . mysqli_error($con));
+        }
 
     }
 }
-header("Location:loginSuccess.php");
+// header("Location:loginSuccess.php");
 
 ?>
