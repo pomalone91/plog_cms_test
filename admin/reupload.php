@@ -40,7 +40,7 @@ if ($_SESSION['user'] == 'admin') {
         $type = $_FILES["fileToUpload"]["type"];
         echo $type;
         echo "<br>";
-        if($type != "text/markdown") {
+        if($type != "text/markdown" && $type != 'application/octet-stream') {
             echo "Bad file type. Should be plaintext Markdown<br>";
             $uploadOk = 0;
         }

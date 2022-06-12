@@ -75,11 +75,11 @@ if ($_SESSION['user'] == 'admin') {
     
     //     Uncomment below to show error message in testing
  
-        if (!$results) {
-            $message = "Whole query " . $search;
-            echo $message;
-            die('Invalid query: ' . mysqli_error($con));
-        }
+  //       if (!$results) {
+//             $message = "Whole query " . $search;
+//             echo $message;
+//             die('Invalid query: ' . mysqli_error($con));
+//         }
 
     }
 }
